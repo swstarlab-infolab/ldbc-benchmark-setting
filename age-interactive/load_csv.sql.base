@@ -1,0 +1,141 @@
+LOAD 'age';
+SET search_path TO ag_catalog;
+
+SELECT create_graph('agload_ldbcsnb');
+
+-- create vertex
+SELECT create_vlabel('agload_ldbcsnb','tagclassv');
+SELECT create_vlabel('agload_ldbcsnb','tagv');
+SELECT create_vlabel('agload_ldbcsnb','personv');
+SELECT create_vlabel('agload_ldbcsnb','forumv');
+SELECT create_vlabel('agload_ldbcsnb','messagev');
+SELECT create_vlabel('agload_ldbcsnb','commentv');
+SELECT create_vlabel('agload_ldbcsnb','postv');
+SELECT create_vlabel('agload_ldbcsnb','placev');
+SELECT create_vlabel('agload_ldbcsnb','cityv');
+SELECT create_vlabel('agload_ldbcsnb','countryv');
+SELECT create_vlabel('agload_ldbcsnb','continentv');
+SELECT create_vlabel('agload_ldbcsnb','organisationv');
+SELECT create_vlabel('agload_ldbcsnb','universityv');
+SELECT create_vlabel('agload_ldbcsnb','companyv');
+
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'tagclassv',
+                             'data_dir/tagclassv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'tagv',
+                             'data_dir/tagv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'personv',
+                             'data_dir/personv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'forumv',
+                             'data_dir/forumv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'messagev',
+                             'data_dir/messagev.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'commentv',
+                             'data_dir/commentv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'postv',
+                             'data_dir/postv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'placev',
+                             'data_dir/placev.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'cityv',
+                             'data_dir/cityv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'countryv',
+                             'data_dir/countryv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'continentv',
+                             'data_dir/continentv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'organisationv',
+                             'data_dir/organisationv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'universityv',
+                             'data_dir/universityv.csv');
+SELECT load_labels_from_file('agload_ldbcsnb',
+                             'companyv',
+                             'data_dir/companyv.csv');
+
+-- create edge
+SELECT create_elabel('agload_ldbcsnb','issubclassof');
+SELECT create_elabel('agload_ldbcsnb','hastype');
+SELECT create_elabel('agload_ldbcsnb','knows');
+SELECT create_elabel('agload_ldbcsnb','hasinterest');
+SELECT create_elabel('agload_ldbcsnb','forum_hastag_tag');
+SELECT create_elabel('agload_ldbcsnb','message_hastag_tag');
+SELECT create_elabel('agload_ldbcsnb','person_islocatedin_city');
+SELECT create_elabel('agload_ldbcsnb','university_islocatedin_city');
+SELECT create_elabel('agload_ldbcsnb','company_islocatedin_country');
+SELECT create_elabel('agload_ldbcsnb','message_islocatedin_country');
+SELECT create_elabel('agload_ldbcsnb','city_ispartof_country');
+SELECT create_elabel('agload_ldbcsnb','country_ispartof_continent');
+SELECT create_elabel('agload_ldbcsnb','studyat');
+SELECT create_elabel('agload_ldbcsnb','workat');
+SELECT create_elabel('agload_ldbcsnb','likes');
+SELECT create_elabel('agload_ldbcsnb','hascreator');
+SELECT create_elabel('agload_ldbcsnb','hasmoderator');
+SELECT create_elabel('agload_ldbcsnb','hasmember');
+SELECT create_elabel('agload_ldbcsnb','containerof');
+SELECT create_elabel('agload_ldbcsnb','replyof');
+
+SELECT load_edges_from_file('agload_ldbcsnb', 'issubclassof',
+     'data_dir/issubclassof.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'hastype',
+     'data_dir/hastype.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'knows',
+     'data_dir/knows.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'hasinterest',
+     'data_dir/hasinterest.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'forum_hastag_tag',
+     'data_dir/forum_hastag_tag.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'message_hastag_tag',
+     'data_dir/message_hastag_tag.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'person_islocatedin_city',
+     'data_dir/person_islocatedin_city.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'university_islocatedin_city',
+     'data_dir/university_islocatedin_city.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'company_islocatedin_country',
+     'data_dir/company_islocatedin_country.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'message_islocatedin_country',
+     'data_dir/message_islocatedin_country.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'city_ispartof_country',
+     'data_dir/city_ispartof_country.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'country_ispartof_continent',
+     'data_dir/country_ispartof_continent.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'studyat',
+     'data_dir/studyat.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'workat',
+     'data_dir/workat.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'likes',
+     'data_dir/likes.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'hascreator',
+     'data_dir/hascreator.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'hasmoderator',
+     'data_dir/hasmoderator.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'hasmember',
+     'data_dir/hasmember.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'containerof',
+     'data_dir/containerof.csv');
+SELECT load_edges_from_file('agload_ldbcsnb', 'replyof',
+     'data_dir/replyof.csv');
+
+CREATE INDEX tagclassv__properties ON agload_ldbcsnb.tagclassv USING GIN (properties);
+CREATE INDEX tagv__properties ON agload_ldbcsnb.tagv USING GIN (properties);
+CREATE INDEX personv__properties ON agload_ldbcsnb.personv USING GIN (properties);
+CREATE INDEX forumv__properties ON agload_ldbcsnb.forumv USING GIN (properties);
+CREATE INDEX messagev__properties ON agload_ldbcsnb.messagev USING GIN (properties);
+CREATE INDEX commentv__properties ON agload_ldbcsnb.commentv USING GIN (properties);
+CREATE INDEX postv__properties ON agload_ldbcsnb.postv USING GIN (properties);
+CREATE INDEX placev__properties ON agload_ldbcsnb.placev USING GIN (properties);
+CREATE INDEX cityv__properties ON agload_ldbcsnb.cityv USING GIN (properties);
+CREATE INDEX countryv__properties ON agload_ldbcsnb.countryv USING GIN (properties);
+CREATE INDEX continentv__properties ON agload_ldbcsnb.continentv USING GIN (properties);
+CREATE INDEX organisationv__properties ON agload_ldbcsnb.organisationv USING GIN (properties);
+CREATE INDEX universityv__properties ON agload_ldbcsnb.universityv USING GIN (properties);
+CREATE INDEX companyv__properties ON agload_ldbcsnb.companyv USING GIN (properties);
